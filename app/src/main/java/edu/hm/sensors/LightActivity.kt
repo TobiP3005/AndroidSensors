@@ -6,29 +6,28 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.widget.TextView
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import edu.hm.sensors.databinding.ActivityProximityBinding
+import edu.hm.sensors.databinding.ActivityLightBinding
 
-class ProximityActivity : AppCompatActivity(), SensorEventListener {
+class LightActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var binding: ActivityProximityBinding
+    private lateinit var binding: ActivityLightBinding
     private lateinit var sensorManager : SensorManager
-    private lateinit var proximitySensor : Sensor
-    private lateinit var proximitySensorValue : TextView
+    private lateinit var lightSensor : Sensor
+    private lateinit var lightSensorValue : TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_proximity)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_proximity)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_light)
 
         //define instances
-        proximitySensorValue = binding.sensorValue
+        lightSensorValue = binding.sensorValue
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
     }
 
 
@@ -38,7 +37,7 @@ class ProximityActivity : AppCompatActivity(), SensorEventListener {
         val currentValue: Float = event!!.values[0]
 
         //display the retrieved value onto the textView
-        proximitySensorValue.text = currentValue.toString()
+        lightSensorValue.text = currentValue.toString()
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
@@ -47,7 +46,7 @@ class ProximityActivity : AppCompatActivity(), SensorEventListener {
     //register the listener once the activity starts
     override fun onStart() {
         super.onStart()
-        sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     //stop the sensor when the activity stops

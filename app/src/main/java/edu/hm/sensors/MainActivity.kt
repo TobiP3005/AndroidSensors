@@ -23,4 +23,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this@MainActivity, ProximityActivity::class.java)
         this.startActivity(intent)
     }
+
+    fun onLightButtonClick(view: View) {
+        val intent = Intent(this@MainActivity, LightActivity::class.java)
+        this.startActivity(intent)
+    }
 }
