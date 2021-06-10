@@ -31,5 +31,13 @@
             android:onClick="@{(view) -> mainActivity.onLightButtonClick(view)}"
             android:text="Light" />
 
+        <Button
+            android:id="@+id/magnetometer_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            android:onClick="@{(view) -> mainActivity.onMagnetometerButtonClick(view)}"
+            android:text="Magnetometer" />
+
     </LinearLayout>
 </layout>

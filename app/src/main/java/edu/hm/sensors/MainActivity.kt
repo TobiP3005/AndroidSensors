@@ -28,4 +28,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this@MainActivity, LightActivity::class.java)
         this.startActivity(intent)
     }
+
+    fun onMagnetometerButtonClick(view: View) {
+        val intent = Intent(this@MainActivity, MagnetometerActivity::class.java)
+        this.startActivity(intent)
+    }
 }
