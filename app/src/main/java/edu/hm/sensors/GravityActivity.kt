@@ -9,10 +9,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import edu.hm.sensors.databinding.ActivityGravityBinding
-import kotlin.math.PI
-import kotlin.math.acos
-import kotlin.math.asin
-import kotlin.math.sqrt
+import kotlin.math.*
 
 class GravityActivity: AppCompatActivity(), SensorEventListener {
 
@@ -61,15 +58,19 @@ class GravityActivity: AppCompatActivity(), SensorEventListener {
             val hyp2 = sqrt(y*y + z*z)
             var angle2 = acos(y/hyp2) * 360 / (2* PI)
             if (z > 0) {
-                angle2 = 360.0 - angle2
+                angle2 = 360 - angle2
+            }
+
+            if (y < 0) {
+                angle2 -= 180
             }
 
             gravityPicture.rotation = angle.toFloat()
+
             gravityPicture.rotationX = angle2.toFloat()
         }
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-
     }
 }
