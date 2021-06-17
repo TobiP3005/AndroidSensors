@@ -23,8 +23,6 @@ class GravityActivity: AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_gravity)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gravity)
 
         //define instances
@@ -45,12 +43,12 @@ class GravityActivity: AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event != null) {
-            val x = -event.values[0]
+            val x = event.values[0]
             val y = event.values[1]
             val z = event.values[2]
 
             val hyp = sqrt(x*x + y*y)
-            var angle = acos(x/hyp) * 360 / (2* PI)
+            var angle = acos(-x/hyp) * 360 / (2* PI)
             if (y < 0) {
                 angle = 360.0 - angle
             }
