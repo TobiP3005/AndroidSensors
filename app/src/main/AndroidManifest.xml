@@ -17,7 +17,11 @@
         <activity
             android:name=".ProximityActivity"
             android:label="Proximity Sensor"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".GravityActivity"
+            android:label="Gravity Sensor"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

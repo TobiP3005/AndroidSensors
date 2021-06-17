@@ -38,6 +38,13 @@
             android:layout_margin="@dimen/margin"
             android:onClick="@{(view) -> mainActivity.onMagnetometerButtonClick(view)}"
             android:text="Magnetometer" />
+        <Button
+            android:id="@+id/gravity_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            android:onClick="@{(view) -> mainActivity.onGravityButtonClick(view)}"
+            android:text="Gravity (Accelerometer)" />
 
     </LinearLayout>
 </layout>
