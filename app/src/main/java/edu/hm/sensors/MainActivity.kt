@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onGravityButtonClick(view: View) {
-        val intent = Intent(this@MainActivity, GravityActivity::class.java)
+        val intent = Intent(this@MainActivity, AccelerometerActivity::class.java)
         this.startActivity(intent)
     }
 }

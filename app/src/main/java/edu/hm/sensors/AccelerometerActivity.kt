@@ -8,13 +8,13 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import edu.hm.sensors.databinding.ActivityGravityBinding
+import edu.hm.sensors.databinding.ActivityAccelerometerBinding
 import kotlin.math.*
 
-class GravityActivity: AppCompatActivity(), SensorEventListener {
+class AccelerometerActivity: AppCompatActivity(), SensorEventListener {
 
 
-    private lateinit var binding: ActivityGravityBinding
+    private lateinit var binding: ActivityAccelerometerBinding
     private lateinit var sensorManager : SensorManager
     private lateinit var gravitySensor : Sensor
     private lateinit var gravityPicture : ImageView
@@ -23,7 +23,7 @@ class GravityActivity: AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_gravity)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_accelerometer)
 
         //define instances
         gravityPicture = binding.gravityImage

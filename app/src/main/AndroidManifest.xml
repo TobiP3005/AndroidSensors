@@ -19,7 +19,7 @@
             android:label="Proximity Sensor"
             android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".GravityActivity"
+            android:name=".AccelerometerActivity"
             android:label="Gravity Sensor"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
