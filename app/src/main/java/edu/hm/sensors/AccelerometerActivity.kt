@@ -7,68 +7,42 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import edu.hm.sensors.databinding.ActivityAccelerometerBinding
-import kotlin.math.*
+import java.lang.Math.*
 
-class AccelerometerActivity: AppCompatActivity(), SensorEventListener {
+class AccelerometerActivity : AppCompatActivity(), SensorEventListener {
 
-
-    private lateinit var binding: ActivityAccelerometerBinding
-    private lateinit var sensorManager : SensorManager
-    private lateinit var gravitySensor : Sensor
-    private lateinit var gravityPicture : ImageView
-
+    lateinit var manager: SensorManager
+    lateinit var sensor : Sensor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_accelerometer)
+        setContentView(R.layout.activity_accelerometer)
 
-        //define instances
-        gravityPicture = binding.gravityImage
-        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        manager = getSystemService(SENSOR_SERVICE) as SensorManager
+        sensor = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
     }
 
-    override fun onResume() {
-        super.onResume()
-        sensorManager.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_NORMAL)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        sensorManager.unregisterListener(this)
+    override fun onStart() {
+        super.onStart()
+        manager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event != null) {
-            val x = event.values[0]
-            val y = event.values[1]
-            val z = event.values[2]
+            val x = event.values[0] // x acceleration
+            val y = event.values[1] // y acceleration
 
-            val hyp = sqrt(x*x + y*y)
-            var angle = acos(-x/hyp) * 360 / (2* PI)
+            var angle = kotlin.math.acos(-x / kotlin.math.sqrt(x * x + y * y)) *360 /(2* PI)
             if (y < 0) {
-                angle = 360.0 - angle
+                angle = 360 - angle
             }
 
-            val hyp2 = sqrt(y*y + z*z)
-            var angle2 = acos(y/hyp2) * 360 / (2* PI)
-            if (z > 0) {
-                angle2 = 360 - angle2
-            }
-
-            if (y < 0) {
-                angle2 -= 180
-            }
-
-            gravityPicture.rotation = angle.toFloat()
-
-            gravityPicture.rotationX = angle2.toFloat()
+            findViewById<ImageView>(R.id.gravity_image).rotation = angle.toFloat()
         }
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+
     }
 }
