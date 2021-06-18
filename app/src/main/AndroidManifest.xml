@@ -20,7 +20,7 @@
             android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".AccelerometerActivity"
-            android:label="Gravity Sensor"
+            android:label="Accelerometer"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
